@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>shop 20</title>
+    <link rel="stylesheet" href="style.css">
+	<!-- Shrikhand ফন্ট লোড -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet">
+</head>
+<body>
+
+   <header>
+    <div class="left-section">
+        <div class="menu-icon" onclick="toggleSideMenu()">☰</div>
+    </div>
+
+  <!-- হেডারের ভিতরে -->
+<h1 class="site-title">Shop 20</h1>
+
+   <div class="right-icons">
+    <div class="search-icon" onclick="openSearchModal()">🔍</div>
+    <div class="cart-icon" onclick="goToCart()">🛒</div>
+</div>
+</header>
+
+
+    <section id="product-detail-page">
+        <div class="container">
+            <div class="detail-card">
+               <!-- প্রোডাক্টের সব ছবি গ্যালারি -->
+<div class="image-gallery" id="image-gallery">
+    <p style="text-align:center; color:#777; padding:20px;" id="gallery-loading">ছবি লোড হচ্ছে...</p>
+</div>
+
+                <div class="product-info">
+    <h1 id="product-name"></h1> <!-- প্রথমে নাম -->
+
+    <!-- নামের নিচে দাম -->
+    <div class="price-block" style="margin-top: 8px;">
+        <span class="current-price" id="product-price" style="font-size: 2rem; font-weight: bold; color: #2e7d32;"></span>
+        <span class="old-price" id="product-old-price" style="font-size: 1.4rem; color: #999; text-decoration: line-through; margin-left: 12px;"></span>
+    </div>
+
+    <!-- দামের নিচে ডেসক্রিপশন -->
+    <p id="product-description" class="product-description" style="margin-top: 20px; font-size: 1.05rem; line-height: 1.7; color: #444;"></p>
+
+    <!-- স্টক (যদি চান) -->
+    <p class="stock-info" style="margin-top: 16px; font-size: 1.1rem;">
+        স্টক: <strong id="product-stock"></strong>
+    </p>
+
+    <!-- অর্ডার বাটন (নিচে রাখা) -->
+    <button class="order-btn" onclick="goToOrderFromDetail()" style="margin-top: 30px; padding: 14px 40px; background: #4caf50; color: white; border: none; border-radius: 50px; font-size: 1.2rem; cursor: pointer;">
+        অর্ডার করুন
+    </button>
+</div>
+
+    <!-- রিভিউ সেকশন -->
+<div class="reviews-section" style="margin-top: 50px;">
+    <h2>গ্রাহকের মতামত</h2>
+
+    <!-- মন্তব্য ফর্ম (উপরে) -->
+    <div id="add-review-form" style="padding: 20px; background: #f9f9f9; border-radius: 10px; margin-bottom: 30px;">
+        <h3>আপনার মতামত দিন</h3>
+        
+        <input type="text" id="review-author" placeholder="আপনার নাম (ঐচ্ছিক)" style="width:100%; padding:12px; margin-bottom:12px; border:1px solid #ddd; border-radius:6px;">
+
+        <div class="rating-input" style="margin:15px 0; font-size:2.8rem; text-align:center; letter-spacing:8px;">
+            <span class="star" data-value="1" onclick="setRating(1)">★</span>
+            <span class="star" data-value="2" onclick="setRating(2)">★</span>
+            <span class="star" data-value="3" onclick="setRating(3)">★</span>
+            <span class="star" data-value="4" onclick="setRating(4)">★</span>
+            <span class="star" data-value="5" onclick="setRating(5)">★</span>
+        </div>
+
+        <textarea id="review-text" placeholder="আপনার অভিজ্ঞতা লিখুন..." rows="5" required style="width:100%; padding:12px; border:1px solid #ddd; border-radius:8px;"></textarea>
+        
+        <button onclick="submitReview()" style="margin-top:15px; padding:12px 30px; background:#4caf50; color:white; border:none; border-radius:50px; cursor:pointer; font-size:1.1rem;">
+            মন্তব্য জমা দিন
+        </button>
+    </div>
+
+    <!-- স্ক্রল বক্স – মন্তব্য ফর্মের নিচে সব মন্তব্য -->
+    <div id="reviews-list" class="reviews-scroll-box"></div>
+</div>
+    </section>
+
+    <footer>
+        <p>ডেভেলপার:imam al mahdi | ইমেইল: mahadi102010@gmail.com | নাম্বার: 01735251867 | অ্যাড্রেস: mymensingh, BD</p>
+		<footer style="background:#1b5e20; color:white; padding:40px 16px; text-align:center;">
+    <p>© 2026 shop 20 | সকল অধিকার সংরক্ষিত</p>
+    </footer>
+
+    <script src="script.js"></script>
+	<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const savedId = localStorage.getItem('currentProductId');
+        console.log("Saved Product ID:", savedId); // ← এটা Console-এ দেখাবে
+
+        if (!savedId || isNaN(parseInt(savedId))) {
+            document.getElementById('product-detail-page').innerHTML = '<p style="text-align:center; padding:60px; color:red; font-size:1.5rem;">কোনো প্রোডাক্ট সিলেক্ট করা হয়নি</p>';
+            return;
+        }
+
+        renderProductDetail();
+        // রিভিউ লোড
+        loadProductReviews(parseInt(savedId));
+    });
+</script>
+</body>
+</html>

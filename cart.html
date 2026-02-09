@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>shop 20</title>
+    <link rel="stylesheet" href="style.css">
+	<!-- Shrikhand ফন্ট লোড -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet">
+</head>
+<body>
+
+   <header>
+    <div class="left-section">
+        <div class="menu-icon" onclick="toggleSideMenu()">☰</div>
+    </div>
+
+  <!-- হেডারের ভিতরে -->
+<h1 st<h1 class="site-title">Shop 20</h1>
+
+   <div class="right-icons">
+    <div class="search-icon" onclick="openSearchModal()">🔍</div>
+    <div class="cart-icon" onclick="goToCart()">🛒</div>
+</div>
+</header>
+
+
+    <section id="order-form">
+        <!-- প্রোডাক্ট কার্ড (ছবি + নাম + দাম + কোয়ান্টিটি কন্ট্রোল) -->
+        <div class="order-product-card">
+            <div id="product-preview" class="product-preview"></div>
+            
+            <div class="product-details">
+                <h2 id="product-name-display"></h2>
+                
+                <p class="product-price-single">
+                    একক দাম: <span id="product-price-display"></span> টাকা
+                </p>
+
+                <!-- কোয়ান্টিটি কন্ট্রোল -->
+                <div class="quantity-control">
+                    <button type="button" class="qty-btn minus" onclick="changeQuantity(-1)">−</button>
+                    <span id="quantity-display">1</span>
+                    <button type="button" class="qty-btn plus" onclick="changeQuantity(1)">+</button>
+                </div>
+
+                <p class="total-price">
+                    মোট দাম: <strong id="total-price-display">0 টাকা</strong>
+                </p>
+            </div>
+        </div>
+
+        <!-- অর্ডার ফর্ম -->
+        <form id="order-details">
+            <input type="text" id="user-name" placeholder="আপনার নাম" required>
+            <input type="tel" id="mobile" placeholder="মোবাইল নাম্বার" required>
+            <input type="email" id="email" placeholder="ইমেইল (ঐচ্ছিক)">
+
+            <select id="country" required onchange="updateDivision()">
+                <option value="">দেশ সিলেক্ট করুন</option>
+                <option value="BD" selected>Bangladesh</option>
+            </select>
+
+            <select id="division" required onchange="updateDistrict()">
+                <option value="">বিভাগ সিলেক্ট করুন</option>
+            </select>
+
+            <select id="district" required onchange="updateUpazila()">
+                <option value="">জেলা সিলেক্ট করুন</option>
+            </select>
+
+            <select id="upazila" required>
+                <option value="">উপজেলা সিলেক্ট করুন</option>
+            </select>
+
+            <textarea id="address" placeholder="বিস্তারিত ঠিকানা" required rows="3"></textarea>
+
+            <select id="payment-method" required onchange="toggleTransactionField()">
+                <option value="">পেমেন্ট মেথড সিলেক্ট করুন</option>
+                <option value="bKash">bKash</option>
+                <option value="Nagad">Nagad</option>
+                <option value="Rocket">Rocket</option>
+                <option value="Upay">Upay</option>
+                <option value="COD">Cash on Delivery</option>
+            </select>
+
+            <div id="transaction-field" style="display: none; margin-top: 15px;">
+                <label for="transaction-id">ট্রানজেকশন আইডি / নম্বর</label>
+                <input type="text" id="transaction-id" placeholder="ট্রানজেকশন আইডি দিন">
+            </div>
+
+            <div id="cod-note" style="display: none; margin-top: 15px; padding: 12px; background: #e8f5e9; border-radius: 8px; color: #2e7d32;">
+                <strong>Cash on Delivery</strong><br>
+                পণ্য হাতে পেয়ে ক্যাশে পেমেন্ট করবেন।
+            </div>
+
+            <button type="submit">অর্ডার কনফার্ম করুন</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>ডেভেলপার:imam al mahdi | ইমেইল: mahadi102010@gmail.com | নাম্বার: 01735251867 | অ্যাড্রেস: mymensingh, BD</p>
+		<footer style="background:#1b5e20; color:white; padding:40px 16px; text-align:center;">
+    <p>© 2026 shop 20 | সকল অধিকার সংরক্ষিত</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
